@@ -6,6 +6,7 @@
 </head>
 <body>
 <h3>Link List</h3>
+<p> <a href="{% url 'linkdl:submit' %}"> + Download photo</a></p>
 {% if latest_link_list %}
     {% for link in latest_link_list %}
     <p>{{ forloop.counter }}.<a href="{% url 'linkdl:detail' link.id %}">{{ link.link }}</a> - 
