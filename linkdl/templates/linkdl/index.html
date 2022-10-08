@@ -1,10 +1,19 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Link List</title>
+</head>
+<body>
+<h3>Link List</h3>
 {% if latest_link_list %}
-    <ul>
     {% for link in latest_link_list %}
-        <li><a href="{% url 'linkdl:detail' link.id %}">{{ link.link }}</a></li>
+    <p>{{ forloop.counter }}.<a href="{% url 'linkdl:detail' link.id %}">{{ link.link }}</a> - 
+    <img src="{{ link.link }}" style="vertical-align:middle"></p>
     {% endfor %}
-    </ul>
+    </p>
 {% else %}
     <p>No links are available.</p>
 {% endif %}
+</body>
+</html>
