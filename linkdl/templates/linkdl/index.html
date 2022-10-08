@@ -9,7 +9,7 @@
 {% if latest_link_list %}
     {% for link in latest_link_list %}
     <p>{{ forloop.counter }}.<a href="{% url 'linkdl:detail' link.id %}">{{ link.link }}</a> - 
-    <img src="{{ link.link }}" style="vertical-align:middle"></p>
+    <img src="{{ link.link }}" height=50vw style="vertical-align:middle"></p>
     {% endfor %}
     </p>
 {% else %}
