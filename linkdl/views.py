@@ -14,8 +14,8 @@ class IndexView(generic.ListView):
     context_object_name = 'latest_link_list'
 
     def get_queryset(self):
-        """Return the last five published questions."""
-        return Link.objects.all()[:5]
+        """Return the last published questions."""
+        return Link.objects.order_by('-id')
 
 class DetailView(generic.DetailView):
     model = Link
@@ -26,13 +26,9 @@ class SubmitView(generic.CreateView):
     form_class = LinkForm
     template_name = 'linkdl/submit.html'
     success_url = reverse_lazy('linkdl:index')
-    # download image
     def download_img(self,link,filename):
         r = requests.get(link)
-        # with open(filename, 'wb') as f:
-        #     f.write(r.content)
-        # content = FileWrapper(filename)
-        response = HttpResponse(r.content, content_type='image/jpeg')
+        response = HttpResponse(r.content, content_type='image/jpeg',)
         # response['Content-Length'] = os.path.getsize(r.content)
         response['Content-Disposition'] = 'attachment; filename=%s' % filename 
         return response
